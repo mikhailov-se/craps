@@ -1,0 +1,25 @@
+# Ingress for Grafana
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: observability-ingress
+  namespace: observability
+  annotations:
+    cert-manager.io/cluster-issuer: lets-encrypt
+spec:
+  rules:
+    - host: grafana.mkve.ru
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name:  kube-prom-stack-grafana
+                port:
+                  number: 80
+  tls:
+    - secretName: grafana-tls
+      hosts:
+        - grafana.mkve.ru
