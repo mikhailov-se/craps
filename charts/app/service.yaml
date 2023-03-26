@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: vault-app-service
+spec:
+  selector:
+    app: vault-app
+  ports:
+    - name: http
+      port: 80
+      targetPort: 5243
+  type: ClusterIP
