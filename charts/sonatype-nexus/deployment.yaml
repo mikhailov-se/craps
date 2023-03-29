@@ -13,21 +13,28 @@ spec:
       labels:
         app: nexus-server
     spec:
+      securityContext:
+        fsGroup: 200
+      nodeSelector:
+        stable: "true"
+      volumes:
+        - name: nexus-data-pv
+          persistentVolumeClaim:
+            claimName: nexus-data-pvc
       containers:
         - name: nexus
           image: sonatype/nexus3:latest
-          resources:
-            limits:
-              memory: "4Gi"
-              cpu: "1000m"
-            requests:
-              memory: "2Gi"
-              cpu: "500m"
+#          resources:
+#            limits:
+#              memory: "2Gi"
+#              cpu: "500m"
+#            requests:
+#              memory: "1Gi"
+#              cpu: "250m"
           ports:
             - containerPort: 8081
           volumeMounts:
-            - name: nexus-data
+            - name: nexus-data-pv
               mountPath: /nexus-data
-      volumes:
-        - name: nexus-data
-          emptyDir: {}
+            - name: nexus-data-pv
+              mountPath: /opt/sonatype/sonatype-work/nexus3
