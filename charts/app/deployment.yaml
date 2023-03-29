@@ -11,26 +11,29 @@ spec:
     metadata:
       labels:
         app: vault-app
-      annotations:
-        vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/agent-pre-populate-only: "true"
-        vault.hashicorp.com/agent-inject-secret-helloworld: "secret/helloworld"
-        vault.hashicorp.com/role: "myapp"
-        # Environment variable export template
-        vault.hashicorp.com/agent-inject-template-config: |
-          {{ with secret "secret/secret/helloworld" -}}
-            export api_key="{{ .Data.data.helloworld }}"
-          {{- end }}
+#      annotations:
+#        vault.hashicorp.com/agent-inject: "true"
+#        vault.hashicorp.com/agent-pre-populate-only: "true"
+#        vault.hashicorp.com/agent-inject-secret-helloworld: "secret/helloworld"
+#        vault.hashicorp.com/role: "myapp"
+#        # Environment variable export template
+#        vault.hashicorp.com/agent-inject-template-config: |
+#          {{ with secret "secret/secret/helloworld" -}}
+#            export api_key="{{ .Data.data.helloworld }}"
+#          {{- end }}
     spec:
+      imagePullSecrets:
+        - name: harbor-credentials
       containers:
         - name: vault-app
           image: harbor.mkve.ru/vault-test/vault-app:newrelic
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           envFrom:
             - configMapRef:
                 name: vault-app-configmap
-      volumes:
-        - name: vault-certs
-          secret:
-            secretName: vault-certs
+#      volumes:
+#        - name: vault-certs
+#          secret:
+#            secretName: vault-certs
