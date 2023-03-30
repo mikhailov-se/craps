@@ -1,16 +1,5 @@
 helm install vault hashicorp/vault --namespace vault --version 0.23.0 -f override-values.yml --dry-run
 
-[//]: # (Unseal Key 1: weVxb8VC2SCzXaHsFzeHVhWFdoc2YEzrwpAInjs6cjU=)
-
-[//]: # ()
-[//]: # ()
-[//]: # (Initial Root Token: hvs.yTDI8GFR6fOVqm0gY4jjtIhr)
-
-
-Unseal Key: RL1Tjd+4005vVfo+bSr+628qzvzARgVKNFGIywQvuCs=
-Root Token: root
-
-
 
 https://habr.com/ru/company/nixys/blog/545188/
 
@@ -40,12 +29,15 @@ bound_service_account_namespaces=demo \
 policies=app \
 ttl=1h
 
+vault secrets enable -path=kv kv
+vault secrets enable -path=secret kv
+
 vault kv put secret/helloworld username=foobaruser password=foobarbazpass
 
 ```
 
-vault write database/config/vault  plugin_name=postgresql-database-plugin   allowed_roles="my-role"  connection_url="postgresql://{{username}}:{{password}}@100.65.197.40:
-5432/vault?sslmode=disable" username="postgres"
+vault secrets enable database
+vault write database/config/vault  plugin_name=postgresql-database-plugin   allowed_roles="my-role"  connection_url="postgresql://{{username}}:{{password}}@100.65.197.40:5432/vault?sslmode=disable" username="postgres"
 
 
 
