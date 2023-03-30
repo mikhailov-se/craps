@@ -1,0 +1,25 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "bridge-to-kubernetes.resource",
+			"type": "bridge-to-kubernetes.resource",
+			"resource": "vault-apphelm",
+			"resourceType": "service",
+			"ports": [
+				80
+			],
+			"targetCluster": "microk8s-cluster",
+			"targetNamespace": "default",
+			"useKubernetesServiceEnvironmentVariables": false
+		},
+		{
+			"label": "bridge-to-kubernetes.compound",
+			"dependsOn": [
+				"bridge-to-kubernetes.resource",
+				"build"
+			],
+			"dependsOrder": "sequence"
+		}
+	]
+}

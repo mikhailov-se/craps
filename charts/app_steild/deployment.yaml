@@ -2,11 +2,11 @@
 kind: Deployment
 metadata:
   name: vault-app
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: vault-app
+#spec:
+#  replicas: 1
+#  selector:
+#    matchLabels:
+#      app: vault-app
   template:
     metadata:
       labels:
@@ -27,7 +27,7 @@ spec:
       containers:
         - name: vault-app
           image: harbor.mkve.ru/vault-test/vault-app:newrelic
-          imagePullPolicy: Always
+          imagePullPolicy: 
           ports:
             - containerPort: 80
           envFrom:

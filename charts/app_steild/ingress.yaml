@@ -2,9 +2,6 @@
 kind: Ingress
 metadata:
   name: vault-app-ingress
-#  namespace: default
-#  annotations:
-#    kubernetes.io/ingress.class: traefik
 spec:
   rules:
     - host: vault-app.mkve.ru

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vault-app-configmap
+data:
+  ASPNETCORE_URLS: http://+:5243
+  ASPNETCORE_ENVIRONMENT: Development
+  CORECLR_ENABLE_PROFILING: "1"
+  CORECLR_PROFILER: "{36032161-FFC0-4B61-B559-F6C5D41BAE5A}"
+  CORECLR_NEWRELIC_HOME: /usr/local/newrelic-dotnet-agent
+  CORECLR_PROFILER_PATH: /usr/local/newrelic-dotnet-agent/libNewRelicProfiler.so
+  NEW_RELIC_LICENSE_KEY: eu01xx9f64c731a540bf73badab997a9f725NRAL
+  NEW_RELIC_APP_NAME: vault-app
