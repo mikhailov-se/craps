@@ -144,7 +144,7 @@ sessionServer:
 
 ## For RBAC support:
 rbac:
-  create: false
+  create: true
 
   ## Define specific rbac permissions.
   ## DEPRECATED: see .Values.rbac.rules
