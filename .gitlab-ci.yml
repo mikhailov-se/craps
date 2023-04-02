@@ -7,10 +7,10 @@ build:
     name: gcr.io/kaniko-project/executor:v1.9.0-debug
     entrypoint: [""]
     
-variables:
-  #More Information on Kaniko Caching: https://cloud.google.com/build/docs/kaniko-cache
-  KANIKO_CACHE_ARGS: "--cache=true --cache-copy-layers=true --cache-ttl=24h"
-  VERSIONLABELMETHOD: "OnlyIfThisCommitHasVersion" # options: "OnlyIfThisCommitHasVersion","LastVersionTagInGit"
+  variables:
+    #More Information on Kaniko Caching: https://cloud.google.com/build/docs/kaniko-cache
+    KANIKO_CACHE_ARGS: "--cache=true --cache-copy-layers=true --cache-ttl=24h"
+    VERSIONLABELMETHOD: "OnlyIfThisCommitHasVersion" # options: "OnlyIfThisCommitHasVersion","LastVersionTagInGit"
 #  IMAGE_LABELS: >
 #    --label org.opencontainers.image.vendor=$CI_SERVER_URL/$GITLAB_USER_LOGIN
 #    --label org.opencontainers.image.authors=$CI_SERVER_URL/$GITLAB_USER_LOGIN
