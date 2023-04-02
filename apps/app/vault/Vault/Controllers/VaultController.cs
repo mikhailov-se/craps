@@ -6,6 +6,7 @@ namespace Vault.Controllers;
 [Route("[controller]")]
 public class VaultController : ControllerBase
 {
+    
     private readonly IConfiguration _configuration;
 
     public VaultController(IConfiguration configuration)
