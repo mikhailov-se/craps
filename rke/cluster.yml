@@ -3,7 +3,7 @@
 nodes:
 - address: mkve.ru
   port: "22"
-  internal_address: 100.106.167.15
+  internal_address: 100.107.206.56
   role:
   - controlplane
   - worker
@@ -21,9 +21,9 @@ nodes:
   port: "22"
   internal_address: ""
   role:
-  - controlplane
+#  - controlplane
   - worker
-  - etcd
+#  - etcd
   hostname_override: ""
   user: ubuntu
   docker_socket: /var/run/docker.sock
